@@ -2,7 +2,9 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link>|
+      <router-link to="/stations">Stations</router-link>|
+      <router-link to="/datasets">Datasets</router-link>
     </div>
     <h1>Historical Weather Data</h1>
     <router-view />

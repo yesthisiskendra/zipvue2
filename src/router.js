@@ -2,6 +2,8 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import ZipShow from "./views/ZipShow.vue";
+import ZipStations from "./views/ZipStations.vue";
+import ZipDatasets from "./views/ZipDatasets.vue";
 
 Vue.use(Router);
 
@@ -27,6 +29,18 @@ export default new Router({
       path: "/zip/:zipcode",
       name: "zipcode-show",
       component: ZipShow,
+      props: true
+    },
+    {
+      path: "/stations/:zipcode",
+      name: "zipcode-stations",
+      component: ZipStations,
+      props: true
+    },
+    {
+      path: "/datasets/:zipcode",
+      name: "zipcode-datasets",
+      component: ZipDatasets,
       props: true
     }
   ]

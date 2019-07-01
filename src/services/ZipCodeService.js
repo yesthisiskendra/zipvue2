@@ -1,5 +1,5 @@
 export default {
-  getDatasetsFromAPI(zipcode) {
+  getStationsFromAPI(zipcode) {
     const url =
       "https://www.ncdc.noaa.gov/cdo-web/api/v2/stations?locationid=ZIP:" +
       zipcode;
@@ -9,10 +9,10 @@ export default {
       headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
     });
   },
-  getStations() {
+  getDatasetsFromAPI(zipcode) {
     const url =
-      "https://www.ncdc.noaa.gov/cdo-web/api/v2/stations?locationid=ZIP:" +
-      "91103";
+      "https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets?locationid=ZIP:" +
+      zipcode;
     // this.state.zipcode
     return fetch(url, {
       headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
