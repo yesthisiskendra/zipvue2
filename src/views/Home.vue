@@ -1,18 +1,34 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+      <form class="review-form" @submit.prevent="onSubmit">
+          <p v-if="errors.length">Please correct the following error(s):
+              <ul>
+                  <li v-for="error in errors">{{ error }}</li>
+              </ul>
+          </p>
+          <p>
+              <!-- <label for="zipcode">Zipcode:</label> -->
+              <input id="zipcode" v-model="zipcode" placeholder="zip code">
+          </p>
+          
+          <p>
+            <input type="submit" value="Submit">  
+          </p>  
+  
+      </form>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
-  name: "home",
-  components: {
-    HelloWorld
+  data() {
+    return {
+      zipcode: null,
+      errors: []
+    };
+  },
+  methods: {
+    onSubmit(){
+      window.location.href = "/zip/" + this.zipcode;
+    }
   }
 };
 </script>
