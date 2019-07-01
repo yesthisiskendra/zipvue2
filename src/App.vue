@@ -2,16 +2,28 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>|
-      <router-link to="/stations">Stations</router-link>|
-      <router-link to="/datasets">Datasets</router-link>|
-      <router-link to="/categories">Categories</router-link>
+      <router-link to="/about">About</router-link>
+      <span v-if="zipcode">
+        |
+        <router-link to="/stations">Stations</router-link>|
+        <router-link to="/datasets">Datasets</router-link>|
+        <router-link to="/categories">Categories</router-link>
+      </span>
     </div>
     <h1>Historical Weather Data</h1>
     <router-view />
   </div>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      zipcode: this.$store.state.zip || null,
+      errors: []
+    };
+  }
+};
+</script>
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

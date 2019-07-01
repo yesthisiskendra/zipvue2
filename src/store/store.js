@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 import * as zipcode from "@/store/modules/zipcode.js";
 
 Vue.use(Vuex);
@@ -20,6 +21,7 @@ export default new Vuex.Store({
       "Stanley"
     ]
   },
+  plugins: [createPersistedState()],
   mutations: {
     SET_ZIP(state, zip) {
       state.zip = zip;

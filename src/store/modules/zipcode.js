@@ -5,7 +5,8 @@ export const state = {
   data: [],
   stations: [],
   datasets: [],
-  categories: []
+  categories: [],
+  author: "Kendra"
 };
 
 export const mutations = {

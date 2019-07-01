@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>for {{ zipcode }}</h2>
+    <h2>for {{ inputZip }}</h2>
     <div v-if="categories">
       <div v-for="data in categories" :key="data.id">
         <div class="station-name">{{ data.name }}</div>
@@ -15,12 +15,18 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   props: ["zipcode"],
+  data() {
+    return {
+      inputZip: this.zipcode ? this.zipcode : this.$store.state.zip
+    };
+  },
   created() {
-    this.getCategories(this.zipcode);
+    // console.log("getting here", this.$store.state.zip);
+    this.getCategories(this.inputZip);
     // this.$store.dispatch('weatherQuery/fetchweatherQuery', this.id)
   },
   computed: {
-    ...mapState("zipcode", ["categories"])
+    ...mapState("zipcode", ["categories", "author"])
   },
   methods: {
     ...mapActions("zipcode", ["getCategories"])

@@ -33,19 +33,19 @@ export default new Router({
       props: true
     },
     {
-      path: "/stations/:zipcode",
+      path: "/stations/:zipcode?",
       name: "zipcode-stations",
       component: ZipStations,
       props: true
     },
     {
-      path: "/datasets/:zipcode",
+      path: "/datasets/:zipcode?",
       name: "zipcode-datasets",
       component: ZipDatasets,
       props: true
     },
     {
-      path: "/categories/:zipcode",
+      path: "/categories/:zipcode?",
       name: "zipcode-categories",
       component: ZipCategories,
       props: true
