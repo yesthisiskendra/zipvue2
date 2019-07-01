@@ -19,6 +19,17 @@ export default {
     });
     // return apiWeatherClient.get('')
   },
+  getCategoriesFromAPI(zipcode) {
+    console.log("getting here cat from api");
+    const url =
+      "https://www.ncdc.noaa.gov/cdo-web/api/v2/datacategories?locationid=ZIP:" +
+      zipcode;
+    // this.state.zipcode
+    return fetch(url, {
+      headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
+    });
+    // return apiWeatherClient.get('')
+  },
   getHighAndLow(zip, start, end) {
     // console.log("GET HIGH AND LOW");
     const url =

@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import ZipShow from "./views/ZipShow.vue";
 import ZipStations from "./views/ZipStations.vue";
 import ZipDatasets from "./views/ZipDatasets.vue";
+import ZipCategories from "./views/ZipCategories.vue";
 
 Vue.use(Router);
 
@@ -41,6 +42,12 @@ export default new Router({
       path: "/datasets/:zipcode",
       name: "zipcode-datasets",
       component: ZipDatasets,
+      props: true
+    },
+    {
+      path: "/categories/:zipcode",
+      name: "zipcode-categories",
+      component: ZipCategories,
       props: true
     }
   ]

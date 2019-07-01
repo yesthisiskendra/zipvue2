@@ -4,15 +4,19 @@ export const namespaced = true;
 export const state = {
   data: [],
   stations: [],
-  datasets: []
+  datasets: [],
+  categories: []
 };
 
 export const mutations = {
   SET_STATIONS(state, stations) {
-    state.stations = stations.map(station => station);
+    state.stations = stations;
   },
   SET_DATASETS(state, datasets) {
-    state.datasets = datasets.map(dataset => dataset);
+    state.datasets = datasets;
+  },
+  SET_CATEGORIES(state, categories) {
+    state.categories = categories;
   }
 };
 
@@ -34,6 +38,17 @@ export const actions = {
       .then(data => {
         // console.log(data)
         commit("SET_DATASETS", data.results);
+      })
+      .catch(error => {
+        console.log("error", error);
+      });
+  },
+  getCategories({ commit }, zipcode) {
+    ZipCodeService.getCategoriesFromAPI(zipcode)
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data)
+        commit("SET_CATEGORIES", data.results);
       })
       .catch(error => {
         console.log("error", error);

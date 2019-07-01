@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -27,8 +28,11 @@ export default {
   },
   methods: {
     onSubmit(){
+      this.submitZip(this.zipcode);
       window.location.href = "/zip/" + this.zipcode;
-    }
+    },
+    ...mapState(['zip']),
+    ...mapActions(['submitZip'])
   }
 };
 </script>

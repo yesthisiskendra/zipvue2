@@ -9,6 +9,7 @@ export default new Vuex.Store({
     zipcode
   },
   state: {
+    zip: 0,
     author: "Kendra",
     categories: [
       "Michael Scott",
@@ -19,6 +20,16 @@ export default new Vuex.Store({
       "Stanley"
     ]
   },
-  mutations: {},
-  actions: {}
+  mutations: {
+    SET_ZIP(state, zip) {
+      state.zip = zip;
+      state.author = "Colin";
+    }
+  },
+  actions: {
+    submitZip({ commit }, zip) {
+      console.log("getting here!", zip);
+      commit("SET_ZIP", zip);
+    }
+  }
 });

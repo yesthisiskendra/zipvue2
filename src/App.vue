@@ -4,7 +4,8 @@
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>|
       <router-link to="/stations">Stations</router-link>|
-      <router-link to="/datasets">Datasets</router-link>
+      <router-link to="/datasets">Datasets</router-link>|
+      <router-link to="/categories">Categories</router-link>
     </div>
     <h1>Historical Weather Data</h1>
     <router-view />
