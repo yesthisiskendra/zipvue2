@@ -5,6 +5,7 @@
       <div v-for="station in stations" :key="station.id">
         <div class="station-name">{{ station.name }}</div>
         <div>DATES: {{ station.mindate }} | {{ station.maxdate }}</div>
+        <div>STATION ID: {{ station.id }}</div>
         <div>DATA: {{ station.id.split(":")[0] }}</div>
       </div>
     </div>

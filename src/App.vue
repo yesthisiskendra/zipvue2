@@ -5,6 +5,7 @@
       <router-link to="/about">About</router-link>
       <span v-if="zipcode">
         |
+        <router-link to="/zip">Temps</router-link>|
         <router-link to="/stations">Stations</router-link>|
         <router-link to="/datasets">Datasets</router-link>|
         <router-link to="/categories">Categories</router-link>

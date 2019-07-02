@@ -27,7 +27,7 @@ export default new Router({
         import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
     {
-      path: "/zip/:zipcode",
+      path: "/zip/:zipcode?",
       name: "zipcode-show",
       component: ZipShow,
       props: true

@@ -127,6 +127,16 @@ export const actions = {
         state.enddate
       );
     });
+  },
+  checkDataSet({ state }, results) {
+    results.forEach(result => {
+      console.log(
+        result.mindate,
+        result.maxdate,
+        state.startdate,
+        state.enddate
+      );
+    });
   }
 };
 
