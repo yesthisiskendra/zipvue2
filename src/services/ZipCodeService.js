@@ -33,7 +33,7 @@ export default {
       start +
       "&enddate=" +
       end +
-      "&limit=100&units=standard&datatypeid=TMAX&datatypeid=TMIN";
+      "&limit=1000&units=standard&datatypeid=TMAX&datatypeid=TMIN";
     return fetch(url, {
       headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
     });
@@ -66,7 +66,18 @@ export default {
       start +
       "&enddate=" +
       end +
-      "&limit=100&units=standard&datatypeid=TMAX&datatypeid=TMIN";
+      "&limit=1000";
+    // "&limit=1000&units=standard&datatypeid=TMAX&datatypeid=TMIN";
+    return fetch(url, {
+      headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
+    });
+  },
+  getInfoFromDatatype(datatype) {
+    // GHCND:USR0000COPA
+    // console.log("station id", stationId);
+    console.log("getting here");
+    const url =
+      "https://www.ncdc.noaa.gov/cdo-web/api/v2/datatypes/" + datatype;
     return fetch(url, {
       headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
     });

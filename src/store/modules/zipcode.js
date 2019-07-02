@@ -118,17 +118,27 @@ export const actions = {
           });
       });
   },
-  checkDateRange({ commit, state }, results) {
-    results.forEach(result => {
-      console.log(
-        result.mindate,
-        result.maxdate,
-        state.startdate,
-        state.enddate
-      );
-    });
+  getDataFromStation({ commit }, payload) {
+    ZipCodeService.getDataFromNearFromAPI(
+      payload.stationId,
+      payload.startdate,
+      payload.enddate
+    )
+      .then(res => res.json())
+      .then(data => {
+        // console.log("jamiedata", data.results);
+        commit("SET_TEMPS", data.results);
+      });
   },
-  checkDataSet({ state }, results) {
+  getInfoFromDatatype({ commit }, datatype) {
+    ZipCodeService.getInfoFromDatatype(datatype)
+      .then(res => res.json())
+      .then(data => {
+        console.log("jamiedata", data);
+        // commit("SET_TEMPS", data.results);
+      });
+  },
+  checkDateRange({ commit, state }, results) {
     results.forEach(result => {
       console.log(
         result.mindate,

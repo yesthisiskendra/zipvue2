@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import JamieShow from "./views/JamieShow.vue";
 import ZipShow from "./views/ZipShow.vue";
 import ZipStations from "./views/ZipStations.vue";
 import ZipDatasets from "./views/ZipDatasets.vue";
@@ -48,6 +49,12 @@ export default new Router({
       path: "/categories/:zipcode?",
       name: "zipcode-categories",
       component: ZipCategories,
+      props: true
+    },
+    {
+      path: "/jamieshow/:zipcode?",
+      name: "jamie-show",
+      component: JamieShow,
       props: true
     }
   ]
