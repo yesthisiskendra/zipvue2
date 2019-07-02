@@ -57,7 +57,7 @@ export const actions = {
         console.log("error", error);
       });
   },
-  getHighAndLow({ commit }, payload) {
+  getHighAndLow({ commit, dispatch }, payload) {
     ZipCodeService.getHighAndLowFromAPI(
       payload.zipcode,
       payload.startdate,
@@ -70,6 +70,7 @@ export const actions = {
           console.log("no data -- get nearby");
           //  Can I call an action from another action?
           //   getNear();
+          dispatch("getNear", payload);
         } else {
           commit("SET_TEMPS", data.results);
         }
@@ -79,6 +80,7 @@ export const actions = {
       });
   },
   getNear({ commit }, payload) {
+    console.log("get near", this.temps);
     ZipCodeService.getStationsFromAPI(payload.zipcode)
       .then(res => res.json())
       .then(data => {

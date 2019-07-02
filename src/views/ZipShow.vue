@@ -32,7 +32,7 @@ export default {
       enddate: this.enddate
     };
     this.getHighAndLow(payload);
-    this.getNear(payload);
+    // this.getNear(payload);
     // this.$store.dispatch('weatherQuery/fetchweatherQuery', this.id)
   },
   computed: {
