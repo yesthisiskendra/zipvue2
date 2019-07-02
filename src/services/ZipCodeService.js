@@ -39,8 +39,8 @@ export default {
     });
   },
   getNearFromAPI(lat, long) {
-    let lat2 = lat + 1;
-    let long2 = long + 1;
+    let lat2 = lat + 0.5;
+    let long2 = long + 0.5;
     // Get lat and long
     // Increase lat and long
     const url =

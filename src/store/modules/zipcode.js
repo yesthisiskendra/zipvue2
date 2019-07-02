@@ -6,7 +6,9 @@ export const state = {
   stations: [],
   datasets: [],
   categories: [],
-  temps: []
+  temps: [],
+  startdate: "",
+  enddate: ""
 };
 
 export const mutations = {
@@ -21,6 +23,10 @@ export const mutations = {
   },
   SET_TEMPS(state, temps) {
     state.temps = temps;
+  },
+  SET_DATES(state, payload) {
+    state.startdate = payload.enddate;
+    state.enddate = payload.enddate;
   }
 };
 
@@ -79,8 +85,9 @@ export const actions = {
         console.log("error", error);
       });
   },
-  getNear({ commit }, payload) {
+  getNear({ commit, dispatch }, payload) {
     console.log("get near", this.temps);
+    commit("SET_DATES", payload);
     ZipCodeService.getStationsFromAPI(payload.zipcode)
       .then(res => res.json())
       .then(data => {
@@ -97,6 +104,8 @@ export const actions = {
         )
           .then(res => res.json())
           .then(data => {
+            dispatch("checkDateRange", data.results);
+            console.log("this many near zip:", data.results);
             ZipCodeService.getDataFromNearFromAPI(
               data.results[data.results.length - 1].id,
               payload.startdate,
@@ -108,6 +117,16 @@ export const actions = {
               });
           });
       });
+  },
+  checkDateRange({ commit, state }, results) {
+    results.forEach(result => {
+      console.log(
+        result.mindate,
+        result.maxdate,
+        state.startdate,
+        state.enddate
+      );
+    });
   }
 };
 
