@@ -6,7 +6,7 @@ export const state = {
   stations: [],
   datasets: [],
   categories: [],
-  author: "Kendra"
+  temps: []
 };
 
 export const mutations = {
@@ -18,6 +18,9 @@ export const mutations = {
   },
   SET_CATEGORIES(state, categories) {
     state.categories = categories;
+  },
+  SET_TEMPS(state, temps) {
+    state.temps = temps;
   }
 };
 
@@ -26,7 +29,6 @@ export const actions = {
     ZipCodeService.getStationsFromAPI(zipcode)
       .then(res => res.json())
       .then(data => {
-        // console.log(data)
         commit("SET_STATIONS", data.results);
       })
       .catch(error => {
@@ -53,6 +55,56 @@ export const actions = {
       })
       .catch(error => {
         console.log("error", error);
+      });
+  },
+  getHighAndLow({ commit }, payload) {
+    ZipCodeService.getHighAndLowFromAPI(
+      payload.zipcode,
+      payload.startdate,
+      payload.enddate
+    )
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (Object.getOwnPropertyNames(data).length === 0) {
+          console.log("no data -- get nearby");
+          //  Can I call an action from another action?
+          //   getNear();
+        } else {
+          commit("SET_TEMPS", data.results);
+        }
+      })
+      .catch(error => {
+        console.log("error", error);
+      });
+  },
+  getNear({ commit }, payload) {
+    ZipCodeService.getStationsFromAPI(payload.zipcode)
+      .then(res => res.json())
+      .then(data => {
+        console.log(
+          "stations",
+          data.results[0].latitude,
+          data.results[0].latitude + 0.2,
+          data.results[0].longitude,
+          data.results[0].longitude + 0.2
+        );
+        ZipCodeService.getNearFromAPI(
+          data.results[0].latitude,
+          data.results[0].longitude
+        )
+          .then(res => res.json())
+          .then(data => {
+            ZipCodeService.getDataFromNearFromAPI(
+              data.results[data.results.length - 1].id,
+              payload.startdate,
+              payload.enddate
+            )
+              .then(res => res.json())
+              .then(data => {
+                commit("SET_TEMPS", data.results);
+              });
+          });
       });
   }
 };

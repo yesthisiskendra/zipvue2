@@ -3,8 +3,6 @@ export default {
     const url =
       "https://www.ncdc.noaa.gov/cdo-web/api/v2/stations?locationid=ZIP:" +
       zipcode;
-    //   '91103'
-    // this.state.zipcode
     return fetch(url, {
       headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
     });
@@ -13,28 +11,57 @@ export default {
     const url =
       "https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets?locationid=ZIP:" +
       zipcode;
-    // this.state.zipcode
     return fetch(url, {
       headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
     });
-    // return apiWeatherClient.get('')
   },
   getCategoriesFromAPI(zipcode) {
     console.log("getting here cat from api");
     const url =
       "https://www.ncdc.noaa.gov/cdo-web/api/v2/datacategories?locationid=ZIP:" +
       zipcode;
-    // this.state.zipcode
     return fetch(url, {
       headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
     });
-    // return apiWeatherClient.get('')
   },
-  getHighAndLow(zip, start, end) {
-    // console.log("GET HIGH AND LOW");
+  getHighAndLowFromAPI(zip, start, end) {
+    console.log("GET HIGH AND LOW", zip, start, end);
     const url =
       "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&locationid=ZIP:" +
       zip +
+      "&startdate=" +
+      start +
+      "&enddate=" +
+      end +
+      "&limit=100&units=standard&datatypeid=TMAX&datatypeid=TMIN";
+    return fetch(url, {
+      headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
+    });
+  },
+  getNearFromAPI(lat, long) {
+    let lat2 = lat + 1;
+    let long2 = long + 1;
+    // Get lat and long
+    // Increase lat and long
+    const url =
+      "https://www.ncdc.noaa.gov/cdo-web/api/v2/stations?datasetid=GSOM&extent=" +
+      lat +
+      "," +
+      long +
+      "," +
+      lat2 +
+      "," +
+      long2;
+    return fetch(url, {
+      headers: { token: "lcgEHOgrtMIIEUdSQGVKZUQYUJHvGnvt" }
+    });
+  },
+  getDataFromNearFromAPI(stationId, start, end) {
+    // GHCND:USR0000COPA
+    console.log("station id", stationId);
+    const url =
+      "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&stationid=" +
+      stationId +
       "&startdate=" +
       start +
       "&enddate=" +

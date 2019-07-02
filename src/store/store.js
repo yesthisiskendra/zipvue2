@@ -25,7 +25,6 @@ export default new Vuex.Store({
   mutations: {
     SET_ZIP(state, zip) {
       state.zip = zip;
-      state.author = "Colin";
     }
   },
   actions: {
